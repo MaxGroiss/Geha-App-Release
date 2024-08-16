@@ -113,5 +113,5 @@ Dieser Bereich der GUI wird für verschiedene Anzeigen verwendet.
 1. **Exportpfad**: Legen Sie den Exportpfad fest oder setzen Sie ihn auf den Standardpfad zurück.
 2. **Lokale Gerätestammbäume**:
    - Laden von GitHub oder einem lokalen Ordner
-   - Speichern und Pushen auf GitHub oder lokal
+   - Speichern und Pushen auf GitHub oder lokal (es wird immer der aktuell aktive Ordner exportiert)
    - Auswahl der Gerätestammbäume für den Generierungsprozess
