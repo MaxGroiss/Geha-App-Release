@@ -91,7 +91,7 @@ This area of the GUI is used for various displays.
 ### Detailed Descriptions
 
 #### Add Devices
-
+![image info](./GuidPictures/AddDev1.jpeg)
 1. **Choose Device Type**:
     - **Add Message Type**: Consists of a data point (MT, MD, etc.).
     - **Add Device**: The source of the message, consisting of multiple data points (group device, e.g., PU, VE, etc.).
