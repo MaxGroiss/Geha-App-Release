@@ -48,7 +48,7 @@ Dieser Bereich befindet sich links in der GUI und enthält wichtige Funktionen:
   - Gruppierung von Reserve-Datenpunkten und Zuweisung zu Anlagen
   - Erstellung von Geräteobjekten und Identifizierung der Meldungsart (Device Identifier Stage 1)
   - Zuweisung der Geräteparameter (z.B. Faceplate-Typ)
-  - Gruppierung von Datenpunkten zu komplexen Geräten
+  - Gruppierung von Datenpunkten zu komplexen Geräten (Device Identifier Stage 2)
   - Speicherung der gruppierten Geräte in einem DataFrame
   - Export einer Excel-Datei, die für die Openness-Schnittstelle aufbereitet ist
 
