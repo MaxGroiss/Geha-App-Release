@@ -135,4 +135,4 @@ This area of the GUI is used for various displays.
     - **Discard Changes**: Discards all changes made.
     - **Apply Changes**: Applies and saves all changes made.
 
-# Realese Notice and Update Information
+# Release Notice and Update Information
