@@ -134,3 +134,5 @@ This area of the GUI is used for various displays.
     - **Select Device Trees**: Must always select local device trees for the generation process, even if they are empty!
     - **Discard Changes**: Discards all changes made.
     - **Apply Changes**: Applies and saves all changes made.
+
+# Realese Notice and Update Information
