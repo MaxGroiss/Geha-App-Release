@@ -1,0 +1,115 @@
+<html><head><style>body {
+   color: black;
+}
+</style></head><body><h1 id="wincc-generator-handbuch">WinCC Generator Handbuch</h1>
+<h2 id="einf-hrung">Einführung</h2>
+<p>Der <strong>WinCC Generator</strong> wird verwendet, um Bilder in <strong>WinCC Unified</strong> zu generieren. Das Programm besteht aus dem Hauptmodul &quot;WinCC Generator&quot;, das die Gruppierung von Datenpunkten in Geräte und Meldungsarten übernimmt, und der WinCC Openness Schnittstelle &quot;WinCC Screen Importer&quot;, die die generierten Objekte im TIA Portal erstellt.</p>
+<h3 id="software-unterst-tzung">Software-Unterstützung</h3>
+<p>Die aktuelle Version der Openness-Schnittstelle ist für TIA Portal Version 19 optimiert. Es ist jedoch möglich, dass sie auch mit TIA V18 funktioniert (dies wurde jedoch nicht getestet).</p>
+<h3 id="versionskontrolle">Versionskontrolle</h3>
+<p>Die Versionskontrolle erfolgt über GitHub. Es wird immer die neueste Version (MainVersion.SubVersion) auf GitHub verfügbar sein. Patches können direkt im Programm aktualisiert werden.</p>
+<p>Die Versionsbezeichnung des WinCC Generators setzt sich wie folgt zusammen:</p>
+<ul>
+<li><strong>MainVersion</strong>: Bedeutende Änderungen. Es wird empfohlen, auf die neueste Version zu aktualisieren.</li>
+<li><strong>SubVersion</strong>: Verbesserungen und neue Features. Ein Update wird empfohlen, wenn keine Fehler auftreten.</li>
+<li><strong>Patch</strong>: Laufende Änderungen in der Gerätedatenbank. Kann im Programm selbst aktualisiert werden.</li>
+</ul>
+<h3 id="funktionsablauf">Funktionsablauf</h3>
+<p>Bevor diese Software verwendet wird, muss über den GLT-Generator die Symbolik aller Datenpunkte nach dem neuen Geha-Standard erstellt werden. Nach Abschluss wird die Funktion <code>DBGen_Export</code> im GLT-Generator verwendet, um eine Excel-Datei zu erstellen, die als Import für den WinCC Generator dient.</p>
+<h4 id="schritt-f-r-schritt-anleitung-">Schritt-für-Schritt-Anleitung:</h4>
+<ol>
+<li>Überprüfen Sie im WinCC Generator, ob alle erforderlichen symbolischen Identifikatoren vorhanden sind.</li>
+<li>Legen Sie einen Exportpfad in den Einstellungen fest und starten Sie den Export.</li>
+<li>Nach dem Export finden Sie eine Excel-Datei am angegebenen Pfad, die alle generierten Raumdateien sowie eine mögliche Fehlerdatei enthält. Überprüfen Sie diese Dateien sorgfältig.</li>
+<li>Bei erfolgreichem Export übertragen Sie die Excel-Datei und den WinCC Screen Importer in die VM, die das TIA-Projekt enthält, und starten Sie den Import.</li>
+<li>Folgen Sie den Anweisungen des Programms für einen reibungslosen Import.</li>
+<li>Der Import kann einige Zeit in Anspruch nehmen; das Programm zeigt den Fortschritt an. Nach Abschluss ist der Vorgang beendet.</li>
+</ol>
+<h2 id="funktionen-des-wincc-generators">Funktionen des WinCC Generators</h2>
+<h3 id="benutzeroberfl-che">Benutzeroberfläche</h3>
+<h4 id="wincc-generator-rahmen">WinCC Generator Rahmen</h4>
+<p>Dieser Bereich befindet sich links in der GUI und enthält wichtige Funktionen:</p>
+<ul>
+<li><p><strong>Start Generating</strong>: Initialisiert den Exportprozess. Der Ablauf umfasst:</p>
+<ul>
+<li>Initialisierung der Gerätedatenbank</li>
+<li>Abfrage der DBGen Import-Datei</li>
+<li>Strukturierung des Imports in einem DataFrame</li>
+<li>Aussortierung ungültiger Einträge (leere Zeilen)</li>
+<li>Gruppierung von Reserve-Datenpunkten und Zuweisung zu Anlagen</li>
+<li>Erstellung von Geräteobjekten und Identifizierung der Meldungsart (Device Identifier Stage 1)</li>
+<li>Zuweisung der Geräteparameter (z.B. Faceplate-Typ)</li>
+<li>Gruppierung von Datenpunkten zu komplexen Geräten (Device Identifier Stage 2)</li>
+<li>Speicherung der gruppierten Geräte in einem DataFrame</li>
+<li>Export einer Excel-Datei, die für die Openness-Schnittstelle aufbereitet ist</li>
+</ul>
+</li>
+<li><p><strong>Statusanzeige</strong>: Zeigt den aktuellen Programmstatus (Bereit, Läuft, Fertig).</p>
+</li>
+<li><strong>GitHub</strong>: Link zum GitHub-Repository des Programms.</li>
+<li><strong>Login</strong>: Erforderlich für Änderungen an der serverbasierten Datenbank.</li>
+<li><strong>Schließen</strong>: Schließt das Programm.</li>
+<li><strong>Erscheinungsmodus</strong>: Anzeigeeinstellungen.</li>
+<li><strong>Update</strong>: Überprüft den Versionsstatus des Programms und aktualisiert die Patch-Version.</li>
+<li><strong>Benutzer</strong>: Zeigt den aktuellen Benutzer nach dem Login an.</li>
+<li><strong>Versionsstatus</strong>: Zeigt Informationen zur verwendeten Version und deren Aktualität an (Internetverbindung erforderlich).</li>
+</ul>
+<h4 id="interaktionsrahmen">Interaktionsrahmen</h4>
+<p><strong>Geräteeinstellungen</strong></p>
+<ul>
+<li><strong>Geräte anzeigen</strong>: Zeigt alle Geräte in der Datenbank an.</li>
+<li><strong>Geräte hinzufügen</strong>: Ermöglicht das Hinzufügen neuer Geräte lokal oder auf dem Server.</li>
+<li><strong>Geräte bearbeiten</strong>: Bearbeiten oder Löschen vorhandener Geräte.</li>
+<li><strong>Lokale/Online-Geräte zusammenführen</strong>: Zusammenführen der lokalen und serverbasierten Gerätedatenbank.</li>
+</ul>
+<p><strong>Grundfunktionen</strong></p>
+<ul>
+<li><strong>Einstellungen</strong>: Konfiguration verschiedener Einstellungen (Exportpfad, lokaler Gerätestammbaum).</li>
+<li><strong>Fenster leeren</strong>: Setzt den Multi-Usage-Frame auf den Standardzustand zurück.</li>
+</ul>
+<h4 id="multi-usage-frame">Multi-Usage-Frame</h4>
+<p>Dieser Bereich der GUI wird für verschiedene Anzeigen verwendet.</p>
+<h3 id="detaillierte-beschreibungen">Detaillierte Beschreibungen</h3>
+<h4 id="ger-te-hinzuf-gen">Geräte hinzufügen</h4>
+<ol>
+<li><p><strong>Gerätetyp wählen</strong>:</p>
+<ul>
+<li><strong>Meldungsart hinzufügen</strong>: Besteht aus einem Datenpunkt.</li>
+<li><strong>Gerät hinzufügen</strong>: Die Quelle der Meldung, bestehend aus mehreren Datenpunkten.</li>
+</ul>
+</li>
+<li><p><strong>Beispiel für ein komplexes Gerät hinzufügen</strong>:</p>
+<ul>
+<li><strong>Symbol-Kennung</strong>: Wird zur Gruppierung verwandter Geräte verwendet.</li>
+<li><strong>Kommentar-Kennung</strong>: Optional; bei Nichtverwendung &quot;default&quot; eintragen. Kann zur Unterteilung von Gerätegruppen genutzt werden.</li>
+<li><strong>Group Able</strong>: Markiert den Gerätetyp als gruppierbar.</li>
+<li><strong>Gerätetyp</strong>: Weist den Eintrag im Variableninterface des Faceplates zu.</li>
+<li><strong>Faceplate-Typ</strong>: Typ des Geräts aus der Geha WinCC Unified Bibliothek.</li>
+<li><strong>Faceplate-Version</strong>: &quot;default&quot; verwendet automatisch die neueste Version.</li>
+<li><strong>Sub-Objects</strong>: Nur für komplexe Geräte; spezifiziert enthaltene Datenpunkte.</li>
+<li><strong>Speichern und Pushen</strong>: Speichert das Gerät in der serverbasierten Datenbank.</li>
+<li><strong>Lokal speichern</strong>: Speichert das Gerät in der lokalen Datenbank.</li>
+</ul>
+</li>
+</ol>
+<h4 id="ger-te-bearbeiten">Geräte bearbeiten</h4>
+<ol>
+<li><strong>Gerät auswählen</strong>: Wählen Sie das zu bearbeitende Gerät aus.</li>
+<li><strong>Bearbeitung</strong>: Ändern Sie Einträge oder speichern Sie das Gerät unter einem neuen Namen, falls keine problematischen Duplikate erkannt werden.</li>
+</ol>
+<h4 id="lokale-und-online-ger-te-zusammenf-hren">Lokale und Online-Geräte zusammenführen</h4>
+<ol>
+<li><strong>Geräte auswählen</strong>: Wählen Sie die Geräte aus, die von der lokalen in die serverbasierte Datenbank übertragen werden sollen.</li>
+<li><strong>Anweisungen befolgen</strong>: Folgen Sie den Programmanweisungen.</li>
+</ol>
+<h4 id="einstellungen">Einstellungen</h4>
+<ol>
+<li><strong>Exportpfad</strong>: Legen Sie den Exportpfad fest oder setzen Sie ihn auf den Standardpfad zurück.</li>
+<li><strong>Lokale Gerätestammbäume</strong>:<ul>
+<li>Laden von GitHub oder einem lokalen Ordner</li>
+<li>Speichern und Pushen auf GitHub oder lokal (es wird immer der aktuell aktive Ordner exportiert)</li>
+<li>Auswahl der Gerätestammbäume für den Generierungsprozess</li>
+</ul>
+</li>
+</ol>
+</body></html>
