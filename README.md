@@ -128,7 +128,7 @@ This area of the GUI is used for various displays.
 2. **Local Device Trees**:
     - The program allows storing and selecting multiple local device databases.
     - **Pull Folder from GitHub**: Load the local database stored on GitHub.
-    - **Push Folder to GitHub**: Save the currently used local device tree folder to GitHub (Note: Unsaved changes will be pushed if the folder is not selected and saved before the process).
+    - **Push Folder to GitHub**: Save the currently used local device tree folder to GitHub (Note: Unsaved changes wont be pushed, select the folder and saved before pushing).
     - **Import from Local Folder**: Load the device trees from a folder on your computer.
     - **Save to Local Folder**: Save the currently loaded device trees to your computer (Note: Same conditions apply as for Push Folder).
     - **Select Device Trees**: Must always select local device trees for the generation process, even if they are empty!
