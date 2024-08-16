@@ -103,7 +103,7 @@ This area of the GUI is used for various displays.
     - **Device Type**: Assigns the entry in the faceplate's variable interface, usually the same as the Symbol Identifier. 
     - **Faceplate Type**: Type of device from the Geha WinCC Unified library.
     - **Faceplate Version**: If "default" is entered, the latest version is used automatically.
-    - **Sub-Objects**: Available only for complex devices, indicating the data points contained within them.
+    - **Sub-Objects**: Available only for complex devices, indicating the data points contained within them, make sure to enter their Device Type.
     - **Save and Push**: Saves the device (message type) to the server-based database (current patch version required, and the user must be logged in).
     - **Save Locally**: Saves the device (message type) to the selected local database.
 
