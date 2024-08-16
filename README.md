@@ -97,15 +97,15 @@ This area of the GUI is used for various displays.
     - **Add Device**: The source of the message, consisting of multiple data points (group device, e.g., PU, VE, etc.).
 
 2. **Adding a Complex Device (Example)**:
-    - **Symbol Identifier**: Used in Identifier Stage 2 to group related devices.
-    - **Comment Identifier**: Optional; if not used, enter "default". It can be used to subdivide device groups (e.g., Pump) into subdevices (e.g., Circulation Pump).
-    - **Group Able**: If set to True, the message type (device type) is marked as groupable and undergoes the next higher grouping process.
-    - **Device Type**: Assigns the entry in the faceplate's variable interface, usually the same as the Symbol Identifier. 
-    - **Faceplate Type**: Type of device from the Geha WinCC Unified library.
-    - **Faceplate Version**: If "default" is entered, the latest version is used automatically.
-    - **Sub-Objects**: Available only for complex devices, indicating the data points contained within them.
-    - **Save and Push**: Saves the device (message type) to the server-based database (current patch version required, and the user must be logged in).
-    - **Save Locally**: Saves the device (message type) to the selected local database.
+    1- **Symbol Identifier**: Used in Identifier Stage 2 to group related devices.
+    2- **Comment Identifier**: Optional; if not used, enter "default". It can be used to subdivide device groups (e.g., Pump) into subdevices (e.g., Circulation Pump).
+    3- **Group Able**: If set to True, the message type (device type) is marked as groupable and undergoes the next higher grouping process.
+    4- **Device Type**: Assigns the entry in the faceplate's variable interface, usually the same as the Symbol Identifier. 
+    5- **Faceplate Type**: Type of device from the Geha WinCC Unified library.
+    6- **Faceplate Version**: If "default" is entered, the latest version is used automatically.
+    7- **Sub-Objects**: Available only for complex devices, indicating the data points contained within them.
+    8- **Save and Push**: Saves the device (message type) to the server-based database (current patch version required, and the user must be logged in).
+    9- **Save Locally**: Saves the device (message type) to the selected local database.
 
 #### Edit Devices
 
