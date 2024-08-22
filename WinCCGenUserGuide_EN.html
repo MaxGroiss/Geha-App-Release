@@ -1,0 +1,139 @@
+<html><head><style>body {
+   color: black;
+}
+</style></head><body><h1 id="wincc-generator-introduction">WinCC Generator Introduction</h1>
+<p>The <strong>WinCC Generator</strong> is used to generate images in WinCC Unified. The program concept consists of the main program &quot;WinCC Generator,&quot; which handles the grouping of data points into devices and message types, and the WinCC Openness interface &quot;WinCC Screen Importer,&quot; which creates the generated objects in the TIA Portal.</p>
+<h2 id="software-support">Software Support</h2>
+<p>The current version of the Openness interface is designed for TIA Portal Version 19, though it may also work with TIA V18 (untested).</p>
+<h2 id="version-control-wincc-generator-">Version Control (WinCC Generator)</h2>
+<p>Version control is managed via GitHub, with the latest version (MainVersion.SubVersion) always available there. The program can be updated to the latest patch directly.</p>
+<h3 id="versioning-scheme">Versioning Scheme</h3>
+<ul>
+<li><strong>MainVersion</strong>: Indicates significant changes. Upgrading to the latest version is strongly recommended.</li>
+<li><strong>SubVersion</strong>: It&#39;s advisable to update, though you may continue using the software if no issues arise.</li>
+<li><strong>Patch</strong>: Describes ongoing changes in the program&#39;s device database. Can be updated within the program itself.</li>
+</ul>
+<p>If issues arise with the current program, check for a newer version before submitting a patch request.</p>
+<h2 id="functionality-overview">Functionality Overview</h2>
+<p>Before using this software, create the symbols for all data points according to the new Geha Symbol Standard via the GLT-Generator. Once done, use the <code>DBGen_Export</code> function in the GLT-Generator to generate an Excel file, which will be imported by WinCC Generator.</p>
+<ol>
+<li>Verify that all necessary symbolic identifiers are present in the WinCC Generator (more information in the &quot;WinCC Generator Functions&quot; section).</li>
+<li>Set an export path in the settings and start the export.</li>
+<li>After the export, check the path for an Excel file containing all generated room files and possibly an error file. Read the error file, as it may contain crucial information regarding the export&#39;s success.</li>
+<li>If the export is satisfactory, transfer the Excel file and the WinCC Screen Importer to the VM containing the TIA project, then start the import by opening the WinCC Screen Importer.</li>
+<li>Follow the program instructions to ensure a smooth import.</li>
+<li>The import process may take some time; the program will display the working status. Once completed, the process is finished.</li>
+</ol>
+<h2 id="wincc-generator-functionalities">WinCC Generator Functionalities</h2>
+<p>The WinCC Generator application offers several functions that allow users to expand the device database. The program is largely modular, with both a local and server-based database.</p>
+<h3 id="user-interface-overview">User Interface Overview</h3>
+<h4 id="wincc-generator-frame">WinCC Generator Frame</h4>
+<p>This section is located on the far left of the GUI and contains essential functions:</p>
+<ul>
+<li><p><strong>Start Generating</strong>: Initiates the export process.</p>
+<ul>
+<li><strong>Process</strong>: <ul>
+<li>Initializes the device database.</li>
+<li>Queries the DBGen import file.</li>
+<li>Structures the import into a DataFrame.</li>
+<li>Filters out invalid entries (empty rows).</li>
+<li>Groups all reserve data points.</li>
+<li>Groups data points into the corresponding systems (referred to as rooms in the program).</li>
+<li>Creates device objects.</li>
+<li>Identifies the message type of the data points (Device Identifier Stage 1).</li>
+<li>Assigns corresponding device parameters (Faceplate Type, etc.).</li>
+<li>Generates an identification string for device grouping.</li>
+<li>Identifies groupable devices (Device Identifier Stage 2).</li>
+<li>Groups individual data points into complex devices (e.g., pumps).</li>
+<li>Higher-level groupings may follow in future versions.</li>
+<li>Stores grouped devices in a DataFrame.</li>
+<li>Outputs an Excel file formatted for the Openness interface.</li>
+<li>The systems are represented as worksheets in the Excel file.</li>
+<li>Export completed.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Status Display</strong>: Shows the program status (Ready, Running, Done).</p>
+</li>
+<li><strong>GitHub</strong>: Links to the GitHub repository containing all program information.</li>
+<li><strong>Login</strong>: Required for making changes to the server-based database.</li>
+<li><strong>Close</strong>: Closes the program.</li>
+<li><strong>Appearance Mode</strong>: Display settings.</li>
+<li><strong>Update</strong>: Checks the program version status and updates the patch version.</li>
+<li><strong>User</strong>: Displays the current user after login.</li>
+<li><strong>Version Status</strong>: Provides information on the version being used and its update status (internet connection required).</li>
+</ul>
+<h4 id="interactions-frame">Interactions Frame</h4>
+<p><strong>Device Settings</strong></p>
+<p>Allows users to make changes to the program database.</p>
+<ul>
+<li><strong>View Devices</strong>: View all devices in the database.</li>
+<li><strong>Add Devices</strong>: Add new devices locally or on the server.</li>
+<li><strong>Edit Devices</strong>: Edit or delete existing devices or create new ones if identifiers are changed.</li>
+<li><strong>Merge Local / Online Devices</strong>: Merge the local device database with the server-based one.</li>
+</ul>
+<p><strong>Basic Functions</strong></p>
+<ul>
+<li><strong>Settings</strong>: Configure various settings (Export Path, Local Device Tree).</li>
+<li><strong>Clear Window</strong>: Resets the Multi Usage Frame to default; used as a back button.</li>
+</ul>
+<h4 id="multi-usage-frame">Multi Usage Frame</h4>
+<p>This area of the GUI is used for various displays.</p>
+<h3 id="detailed-descriptions">Detailed Descriptions</h3>
+<h4 id="add-devices">Add Devices</h4>
+<ol>
+<li><p><strong>Choose Device Type</strong>:</p>
+<ul>
+<li><strong>Add Message Type</strong>: Consists of a data point (MT, MD, etc.).</li>
+<li><strong>Add Device</strong>: The source of the message, consisting of multiple data points (group device, e.g., PU, VE, etc.).</li>
+</ul>
+</li>
+<li><p><strong>Adding a Complex Device (Example)</strong>:</p>
+<ul>
+<li><strong>Symbol Identifier</strong>: Used in Identifier Stage 2 to group related devices.</li>
+<li><strong>Comment Identifier</strong>: Optional; if not used, enter &quot;default&quot;. It can be used to subdivide device groups (e.g., Pump) into subdevices (e.g., Circulation Pump).</li>
+<li><strong>Group Able</strong>: If set to True, the message type (device type) is marked as groupable and undergoes the next higher grouping process.</li>
+<li><strong>Device Type</strong>: Assigns the entry in the faceplate&#39;s variable interface, usually the same as the Symbol Identifier. </li>
+<li><strong>Faceplate Type</strong>: Type of device from the Geha WinCC Unified library.</li>
+<li><strong>Faceplate Version</strong>: If &quot;default&quot; is entered, the latest version is used automatically.</li>
+<li><strong>Sub-Objects</strong>: Available only for complex devices, indicating the data points contained within them.</li>
+<li><strong>Save and Push</strong>: Saves the device (message type) to the server-based database (current patch version required, and the user must be logged in).</li>
+<li><strong>Save Locally</strong>: Saves the device (message type) to the selected local database.</li>
+</ul>
+</li>
+</ol>
+<h4 id="edit-devices">Edit Devices</h4>
+<ol>
+<li><strong>Select Device to Edit</strong>.</li>
+<li><strong>Same Entries and Buttons as in Add Devices</strong>.</li>
+<li><strong>Save As</strong>: If the Symbol or Comment Identifier is changed and no problematic duplicates are detected, this function acts as a &quot;Save As.&quot;</li>
+<li><strong>Deleting Devices</strong>: The same conditions apply as for saving processes when deleting devices from the server database.</li>
+</ol>
+<h4 id="merge-local-online-devices">Merge Local/Online Devices</h4>
+<ol>
+<li><strong>Select Devices (Message Types)</strong> to transfer from the local database to the server-based one.</li>
+<li><strong>Follow the Program Instructions</strong>.</li>
+</ol>
+<h4 id="settings">Settings</h4>
+<ol>
+<li><p><strong>Export</strong>:</p>
+<ul>
+<li><strong>Default Path</strong>: Resets the export path to the default (installation location, Exports folder).</li>
+<li><strong>Set Path</strong>: Allows setting an export location for all generated files; a folder structure is created at the chosen path if it does not exist.</li>
+</ul>
+</li>
+<li><p><strong>Local Device Trees</strong>:</p>
+<ul>
+<li>The program allows storing and selecting multiple local device databases.</li>
+<li><strong>Pull Folder from GitHub</strong>: Load the local database stored on GitHub.</li>
+<li><strong>Push Folder to GitHub</strong>: Save the currently used local device tree folder to GitHub (Note: It will always push the last saved folder).</li>
+<li><strong>Import from Local Folder</strong>: Load the device trees from a folder on your computer.</li>
+<li><strong>Save to Local Folder</strong>: Save the currently loaded device trees to your computer (Note: Same conditions apply as for Push Folder).</li>
+<li><strong>Select Device Trees</strong>: Must always select local device trees for the generation process, even if they are empty!</li>
+<li><strong>Discard Changes</strong>: Discards all changes made.</li>
+<li><strong>Apply Changes</strong>: Applies and saves all changes made.</li>
+</ul>
+</li>
+</ol>
+</body></html>
