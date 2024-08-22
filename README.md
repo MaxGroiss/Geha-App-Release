@@ -91,11 +91,11 @@ This area of the GUI is used for various displays.
 ### Detailed Descriptions
 
 #### Add Devices
-![image info](GuidPictures/AddDev1.JPG)
+
 1. **Choose Device Type**:
     - **Add Message Type**: Consists of a data point (MT, MD, etc.).
     - **Add Device**: The source of the message, consisting of multiple data points (group device, e.g., PU, VE, etc.).
-![image info](GuidPictures/AddDev2.JPG)
+
 2. **Adding a Complex Device (Example)**:
     - **Symbol Identifier**: Used in Identifier Stage 2 to group related devices.
     - **Comment Identifier**: Optional; if not used, enter "default". It can be used to subdivide device groups (e.g., Pump) into subdevices (e.g., Circulation Pump).
@@ -103,12 +103,12 @@ This area of the GUI is used for various displays.
     - **Device Type**: Assigns the entry in the faceplate's variable interface, usually the same as the Symbol Identifier. 
     - **Faceplate Type**: Type of device from the Geha WinCC Unified library.
     - **Faceplate Version**: If "default" is entered, the latest version is used automatically.
-    - **Sub-Objects**: Available only for complex devices, indicating the data points contained within them, make sure to enter their Device Type.
+    - **Sub-Objects**: Available only for complex devices, indicating the data points contained within them.
     - **Save and Push**: Saves the device (message type) to the server-based database (current patch version required, and the user must be logged in).
     - **Save Locally**: Saves the device (message type) to the selected local database.
 
 #### Edit Devices
-![image info](GuidPictures/EdDev1.JPG)
+
 1. **Select Device to Edit**.
 2. **Same Entries and Buttons as in Add Devices**.
 3. **Save As**: If the Symbol or Comment Identifier is changed and no problematic duplicates are detected, this function acts as a "Save As."
@@ -120,7 +120,7 @@ This area of the GUI is used for various displays.
 2. **Follow the Program Instructions**.
 
 #### Settings
-![image info](GuidPictures/Settings.JPG)
+
 1. **Export**:
     - **Default Path**: Resets the export path to the default (installation location, Exports folder).
     - **Set Path**: Allows setting an export location for all generated files; a folder structure is created at the chosen path if it does not exist.
@@ -128,11 +128,9 @@ This area of the GUI is used for various displays.
 2. **Local Device Trees**:
     - The program allows storing and selecting multiple local device databases.
     - **Pull Folder from GitHub**: Load the local database stored on GitHub.
-    - **Push Folder to GitHub**: Save the currently used local device tree folder to GitHub (Note: Unsaved changes wont be pushed, select the folder and saved before pushing).
+    - **Push Folder to GitHub**: Save the currently used local device tree folder to GitHub (Note: It will always push the last saved folder).
     - **Import from Local Folder**: Load the device trees from a folder on your computer.
     - **Save to Local Folder**: Save the currently loaded device trees to your computer (Note: Same conditions apply as for Push Folder).
     - **Select Device Trees**: Must always select local device trees for the generation process, even if they are empty!
     - **Discard Changes**: Discards all changes made.
     - **Apply Changes**: Applies and saves all changes made.
-
-# Release Notice and Update Information
