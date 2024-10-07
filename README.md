@@ -138,10 +138,3 @@ This area of the GUI is used for various displays.
     - **Discard Changes**: Discards all changes made.
     - **Apply Changes**: Applies and saves all changes made.
 # GehaOpennessApp
-
-Release Notes
-=========================
-## GehaOpennessApp
-### Beta1
-- Grundanwendung Funktionsfähig
-
