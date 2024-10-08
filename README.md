@@ -37,7 +37,7 @@ GehaSHub beinhaltet alle rechenintensiven [Anwendungen](#anwendungen)
 
 Die Installation erfolgt über eine Setup Datei welche mit einem User Interface eine möglichst einfache Installation gewährleistet. Das Installationssetup sollte ziemlich zügig ablaufen, gegen Ende der Installation wird meist etwas mehr Zeit benötigt. Um die Setup  Datei ausführen zu können, ist das Geha Software Passwort einzugeben.[^3]
 
-[^3]: 
+[^3]: Siehe privates Repo/Issues/Passwörter
 
 ### Runtime:
 
